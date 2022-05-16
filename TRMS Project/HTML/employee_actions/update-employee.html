@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Update Employee</title>
+
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\side-bar.css">
+
+<style>
+    #field input{
+        margin-left: 100px;
+    }
+    #field label{
+        position:absolute;
+    }
+    #retrieve {
+        text-align:left;
+    }
+    td {
+    border: 1px solid black;
+    padding: 8px;
+    }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+
+    <!--Navigation Banner-->
+    <div class="topnav" id="myTopnav">
+        <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Employees
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+                <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+                <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+            </div>
+        </div>
+        <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+        <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <!--End of Navagation Banner-->
+
+    <!--Side Navigation Bar (on right side)-->
+    <div id="mySidenav" class="sidenav">
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile</a><br>
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a><br>
+        <a href="#">Log Out</a>
+    </div>
+    <!--End of Side Navigation Bar-->
+  
+
+
+    <h1>Update Employee</h1>
+    
+    <div style="padding-top:2%; padding-bottom:5%; padding-left:5%; padding-right:5%;">
+        <h2>Update Your Employee Information</h2>
+  
+        <div id="field">
+            <label for="eId">Employee ID:</label>
+            <input type="number" id="eId" value="1" min="1"><br>
+    
+            <label for="fName">First Name:</label>
+            <input type="text" id="fName"><br>
+
+            <label for="lName">Last Name:</label>
+            <input type="text" id="lName"><br>
+    
+            <label for="email">Email:</label>
+            <input type="text" id="email"><br>
+                
+            <label for="position">Position:</label>
+            <input type="text" id="position"><br>
+    
+            <br><button onclick="updateEmployee()">Update</button>
+        </div>
+
+        <br><br>
+
+        <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+            <tr>
+                <td>Employee ID</td>
+                <td id="eId">-</td>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td id="fName">-</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td id="lName">-</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td id="email">-</td>
+            </tr>
+            <tr>
+                <td>Position</td>
+                <td id="position">-</td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <!--Bottom Border (on the window bottom)-->
+    <div id="bottom-border">
+        <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+          <button type="submit">Home</button>
+        </form>
+      </div>
+
+</body>
+<script>
+    function populateTable(body) {
+        document.getElementById("eId").innerHTML = body['employee_id']
+        document.getElementById("fName").innerHTML = body['f_name']
+        document.getElementById("lName").innerHTML = body['l_name']
+        document.getElementById("email").innerHTML = body['email']
+        document.getElementById("position").innerHTML = body['position']
+    }
+
+    //updates Employee
+    async function updateEmployee() {
+        console.log("Updating Employee....")
+
+        const id = document.getElementById("eId").value
+        const fNameValue = document.getElementById("fName").value
+        const lNameValue = document.getElementById("lName").value
+        const emailValue = document.getElementById("email").value
+        const positionValue = document.getElementById("position").value
+
+        console.log(id)
+        console.log(fNameValue)
+        console.log(lNameValue)
+        console.log(emailValue)
+        console.log(positionValue)
+  
+        const data = {
+            eId: id,
+            fName: fNameValue,
+            lName: lNameValue,
+            email: emailValue,
+            position: positionValue
+        }
+  
+        const url = `http://localhost:5000/employee`
+        const httpResponce = await fetch(url, {
+            method: "PUT",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+  
+        const body = await httpResponce.json();
+  
+        console.log(body);
+            if(body) {
+                alert("Employee Successfully Updated")
+            }
+            else {
+                alert("Employee Failed to be Updated")
+            }
+
+        populateTable(body)
+    }
+</script>
+</html>

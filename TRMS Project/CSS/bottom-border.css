@@ -1,0 +1,11 @@
+/*This is the External Stylesheet for the Bottom Border*/
+
+#bottom-border {
+    background-color: rgb(72, 65, 51);
+    color: white;
+    padding: 2px;
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+    width: 100%;
+  }

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Create TRMS</title>
+
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\side-bar.css">
+
+<style>
+    td {
+    border: 1px solid black;
+    padding: 8px;
+    }
+    #field input{
+        margin-left: 300px;
+    }
+    #field label{
+        position:absolute;
+    }
+    #retrieve {
+        text-align:left;
+    }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+
+    <!--Navigation Banner-->
+    <div class="topnav" id="myTopnav">
+        <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+    <div class="dropdown">
+        <button class="dropbtn">Employees
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+            <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+            <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+        </div>
+    </div>
+    <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+    <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <!--End of Navagation Banner-->
+
+    <!--Side Navigation Bar (on right side)-->
+    <div id="mySidenav" class="sidenav">
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile</a><br>
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a><br>
+        <a href="#">Log Out</a>
+    </div>
+    <!--End of Side Navigation Bar-->
+  
+
+
+    <h1>TRMS Form Creation</h1>
+
+    <div style="padding-top:2%; padding-bottom:5%; padding-left:5%; padding-right:5%;">
+        <h2>Create A New TRMS</h2>
+  
+        <div id="field">
+            <label for="employeeId">Employee ID:</label>
+            <input type="number" id="employeeId" value="1" min="1"><br>
+    
+            <label for="fStatus">Status (write as 'pending')</label>
+            <input type="text" id="fStatus"><br>
+            
+            <label for="documentation">Documentation ('true' for yes / 'false' for no)</label>
+            <input type="text" id="documentation"><br>
+    
+            <label for="rType">Event ('certification', 'training', etc.)</label>
+            <input type="text" id="rType"><br>
+    
+            <br><button onclick="createTRMS()">Create</button>
+        </div>
+
+        <br><br>
+
+        <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+            <tr>
+                <td>TRMS ID</td>
+                <td id="doc">-</td>
+            </tr>
+            <tr>
+                <td>Employee ID</td>
+                <td id="employee">-</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td id="status">-</td>
+            </tr>
+            <tr>
+                <td>Documentation</td>
+                <td id="documentation">-</td>
+            </tr>
+            <tr>
+                <td>Event</td>
+                <td id="type">-</td>
+            </tr>
+        </table>
+
+        <h2>Create A TRMS Reference</h2>
+  
+        <div id="field">
+            <label for="trmsId">TRMS ID:</label>
+            <input type="number" id="trmsId" value="1" min="1"><br>
+    
+            <label for="gScale">Grading Scale ('ABCDF' or 'Pass/Fail'):</label>
+            <input type="text" id="gScale"><br>
+            
+            <label for="gRecieved">Grade Recieved:</label>
+            <input type="text" id="gRecieved"><br>
+    
+            <label for="pNeeded">Presentation Needed ('yes' or 'no'):</label>
+            <input type="text" id="pNeeded"><br>
+
+            <label for="pSuccess">Presentation Success ('true' or 'false'):</label>
+            <input type="text" id="pSuccess"><br>
+    
+            <br><button onclick="createReference()">Create</button>
+        </div>
+
+        <br><br>
+
+        <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+            <tr>
+                <td>Reference ID</td>
+                <td id="rId">-</td>
+            </tr>
+            <tr>
+                <td>TRMS ID</td>
+                <td id="trmsId">-</td>
+            </tr>
+            <tr>
+                <td>Grading Scale</td>
+                <td id="gScale">-</td>
+            </tr>
+            <tr>
+                <td>Grade Recieved</td>
+                <td id="gRecieved">-</td>
+            </tr>
+            <tr>
+                <td>Presentation Needed</td>
+                <td id="pNeeded">-</td>
+            </tr>
+            <tr>
+                <td>Presentation Success</td>
+                <td id="pSuccess">-</td>
+            </tr>
+        </table>
+
+        <br><br><button onclick="submitted()" method="GET">Submit TRMS</button>
+
+    </div>
+
+
+    <!--Bottom Border (on the window bottom)-->
+    <div id="bottom-border">
+        <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+            <button type="submit">Home</button>
+        </form>
+      </div>
+
+</body>
+<script>
+    function submitted(){
+        alert("TRMS has been submitted")
+    }
+
+    function populateTable1(body) {
+        document.getElementById("doc").innerHTML = body['doc_id']
+        document.getElementById("employee").innerHTML = body['employee_id']
+        document.getElementById("status").innerHTML = body['f_status']
+        document.getElementById("documentation").innerHTML = body['documentation']
+        document.getElementById("type").innerHTML = body['r_type']
+    }
+
+    function populateTable2(body) {
+        document.getElementById("rId").innerHTML = body['ref_id']
+        document.getElementById("trmsId").innerHTML = body['doc_id']
+        document.getElementById("gScale").innerHTML = body['g_scale']
+        document.getElementById("gRecieved").innerHTML = body['g_earned']
+        document.getElementById("pNeeded").innerHTML = body['p_needed']
+        document.getElementById("pSuccess").innerHTML = body['p_success']
+    }
+
+    //creates the TRMS
+    async function createTRMS() {
+        console.log("Creating TRMS....")
+
+        const id = document.getElementById("employeeId").value
+        const fstatusValue = document.getElementById("fStatus").value
+        const documentationValue = document.getElementById("documentation").value
+        const rtypeValue = document.getElementById("rType").value
+
+        console.log(id)
+        console.log(fstatusValue)
+        console.log(documentationValue)
+        console.log(rtypeValue)
+  
+        const data = {
+            employeeId: id,
+            documentation: documentationValue,
+            fStatus: fstatusValue,
+            rType: rtypeValue,
+        }
+  
+        const url = `http://localhost:5000/trms`
+        const httpResponce = await fetch(url, {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+  
+        const body = await httpResponce.json();
+  
+        console.log(body);
+            if(body) {
+                alert("TRMS Successfully Created")
+            }
+            else {
+                alert("TRMS Failed to be Created")
+            }
+
+        populateTable1(body)
+    }
+
+    //creates the Reference
+    async function createReference() {
+        console.log("Creating Reference....")
+
+        const id = document.getElementById("trmsId").value
+        const gScaleValue = document.getElementById("gScale").value
+        const gRecievedValue = document.getElementById("gRecieved").value
+        const pNeededValue = document.getElementById("pNeeded").value
+        const pSuccessValue = document.getElementById("pSuccess").value
+
+        console.log(id)
+        console.log(gScaleValue)
+        console.log(gRecievedValue)
+        console.log(pNeededValue)
+        console.log(pSuccessValue)
+  
+        const data = {
+            docId: id,
+            gEarned: gRecievedValue,
+            gScale: gScaleValue,
+            pNeeded: pNeededValue,
+            pSuccess: pSuccessValue,
+        }
+  
+        const url = `http://localhost:5000/reference`
+        const httpResponce = await fetch(url, {
+            method: "POST",
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+  
+        const body = await httpResponce.json();
+  
+        console.log(body);
+            if(body) {
+                alert("Reference Successfully Created")
+            }
+            else {
+                alert("Reference Failed to be Created")
+            }
+
+        populateTable2(body)
+    }
+
+
+</script>
+</html>

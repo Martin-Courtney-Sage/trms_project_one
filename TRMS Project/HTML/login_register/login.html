@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Login</title>
+
+<!--External CSS Style Sheets-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\login.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+</head>
+<body style="background-color:bisque;">
+
+	<!--Navigation Banner-->
+	<div class="topnav" id="myTopnav">
+		<a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+		<div class="dropdown">
+		  	<button class="dropbtn">Employees
+				<i class="fa fa-caret-down"></i>
+		  	</button>
+		  	<div class="dropdown-content">
+				<a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+				<a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+				<a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+		  	</div>
+		</div>
+		<a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+		<a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+	<!--End of Navagation Banner-->
+
+	<div class="login">
+		<h1>Login</h1>
+		<div class="links">
+			<a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html" class="act">Login</a>
+			<a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\register.html">Register</a>
+		</div>
+		<form id="login">
+			<label for="username">
+				<i class="fas fa-user"></i>
+			</label>
+			<input type="text" name="username" placeholder="Username" id="username" required>
+			<label for="passcode">
+				<i class="fas fa-lock"></i>
+			</label>
+			<input type="password" name="passcode" placeholder="Passcode" id="passcode" required>
+			<div class="msg"></div>
+			<form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html" method="get" >
+				<button type="submit" onclick="login()" value="Login">Login</button>
+			</form>
+		</form>
+	</div>
+
+	<!--Bottom Border (on the window bottom)-->
+    <div id="bottom-border">
+		<form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+		  <button type="submit">Home</button>
+		</form>
+	</div>
+</body>
+<script src="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\JavaScript\nav-bar.js"></script>
+<script>
+	//Login - vertify information POST request, and return the Profile-Home HTML page
+	async function login() {
+		const username = document.getElementById(username).value
+		const passcode = document.getElementById(passcode).value
+		const url = `http://localhost:5000/login`
+		const httpResponce = await fetch(url, {
+			method: "POST"
+		});
+		const body = await httpResponce.json();
+	}
+</script>
+</html>

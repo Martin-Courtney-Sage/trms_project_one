@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Employee Profile</title>
+    
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+
+<style>
+  #field input{
+    margin-left: 80px;
+  }
+  #field label{
+    position:absolute;
+  }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+    
+  <!--Navigation Banner-->
+  <div class="topnav" id="myTopnav">
+    <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Employees
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+        <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+        <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+      </div>
+    </div>
+    <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+    <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  <!--End of Navagation Banner-->
+
+  <h1 style="text-align:center">Employee Profile</h1>
+
+  <div style="float: left; padding-left:12%; padding-right:25%">
+    <h2>Create New Employee</h2>
+    <div id="field">
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname"><br>
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname"><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email"><br>
+      <label for="position">Position:</label>
+      <input type="text" id="position"><br>
+      <br><button onclick="createEmployee()">Register Employee</button>
+    </div>
+  </div>
+  <br>
+
+  <div style="float: left; padding-right: 0%; padding-left: 12%;">
+    <h2>Current Employees:</h2><br>
+    <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html" mehtod="get">
+      <button type="submit">Employee Login</button>
+    </form>
+  </div>
+
+  <!--Bottom Border (on the window bottom)-->
+  <div id="bottom-border">
+    <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+      <button type="submit">Home</button>
+    </form>
+  </div>
+
+</body>
+<script src="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\JavaScript\nav-bar.js"></script>
+<script>
+  async function createEmployee() {
+
+    console.log("Creating Employee....")
+        
+    const fnameValue = document.getElementById("fname").value
+    const lnameValue = document.getElementById("lname").value
+    const emailValue = document.getElementById("email").value
+    const positionValue = document.getElementById("position").value
+
+    console.log(fnameValue)
+    console.log(lnameValue)
+    console.log(emailValue)
+    console.log(positionValue)
+
+    const data = {
+      fName: fnameValue,
+      lName: lnameValue,
+      email: emailValue,
+      position: positionValue
+      }
+
+    const url = `http://localhost:5000/employee`
+    const httpResponce = await fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const body = await httpResponce.json();
+
+    console.log(body);
+      if(body) {
+        alert("Employee Successfully Created")
+      }
+      else {
+        alert("Employee Failed to be Created")
+      }
+
+  }
+</script>
+</html>

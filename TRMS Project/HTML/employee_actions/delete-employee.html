@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Update Employee</title>
+
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\side-bar.css">
+
+<style>
+    #field input{
+        margin-left: 100px;
+    }
+    #field label{
+        position:absolute;
+    }
+    #retrieve {
+        text-align:left;
+    }
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+
+    <!--Navigation Banner-->
+    <div class="topnav" id="myTopnav">
+        <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Employees
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+                <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+                <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+            </div>
+        </div>
+        <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+        <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <!--End of Navagation Banner-->
+
+    <!--Side Navigation Bar (on right side)-->
+    <div id="mySidenav" class="sidenav">
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile</a><br>
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a><br>
+        <a href="#">Log Out</a>
+    </div>
+    <!--End of Side Navigation Bar-->
+
+    <h1>Delete Employee</h1>
+
+    <div id="deleteEmployee" style="padding-top:2%; padding-bottom:5%; padding-left:5%; padding-right:5%;">
+        <h2>Delete Your Employee Account</h2>
+        <label for="idInputTwo">Employee ID:</label>
+        <input type="number" id="idInputTwo" value="1" min="1">
+        <button onclick="deleteEmployee()">Delete Employee</button>
+        <div>
+            <p id=""></p>
+        </div>
+    </div>
+
+    <!--Bottom Border (on the window bottom)-->
+    <div id="bottom-border">
+        <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+        <button type="submit">Home</button>
+        </form>
+    </div>
+
+</body>
+<script>
+    //delete Employee
+    async function deleteEmployee(){
+        const id = document.getElementById("idInputTwo").value
+        const url =  `http://localhost:5000/trms/${id}`
+
+        const httpResponce = await fetch(url, {
+            method:"DELETE"});
+
+        const body = await httpResponce
+
+        console.log(body);
+            if(body) {
+                alert("Employee Successfully Deleted!....Returning to Login Page....")
+            //call the action to logout an employee (will include redirect to the login page)
+            }
+            else {
+                alert("Employee Failed to be Deleted.")
+            }
+    }
+</script>
+</html>

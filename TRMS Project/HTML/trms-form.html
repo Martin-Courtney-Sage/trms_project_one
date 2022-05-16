@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>TRMS Form</title>
+
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\side-bar.css">
+
+<style>
+  #actionReference{
+    text-decoration:underline;
+  }
+  #tableSection{
+    float: left;
+    padding-right: 60%;
+    padding-left: 5%;
+    padding-bottom:5%;
+    text-align: center;
+  }
+  #retrieve {
+    border: 1px solid black;
+    padding-left: 2%;
+    text-align:left;
+  }
+  #coverageInfo{
+    border:3px solid black;
+    background-color: #60b796;
+    text-align:center;
+    padding: 1%;
+  }
+  td {
+    border: 1px solid black;
+  }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+
+  <!--Navigation Banner-->
+  <div class="topnav" id="myTopnav">
+    <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Employees
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+        <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+        <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+      </div>
+    </div>
+    <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+    <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  <!--End of Navagation Banner-->
+
+  <!--Side Navigation Bar (on right side)-->
+  <div id="mySidenav" class="sidenav">
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile</a><br>
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a><br>
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms_actions\all-trms.html">View All TRMS Forms</a><br>
+    <a href="#">Log Out</a>
+  </div>
+  <!--End of Side Navigation Bar-->
+
+
+  <!--pushes page content to the left of the side bar-->
+  <div id="main">
+
+    <h1 style="text-align: center;">TRMS Form</h1>
+
+
+    <!--Directory Buttons to Link to TRMS Form Actions-->
+    <h2 id="actionTRMS">TRMS Actions</h2>
+
+    
+    <div id="createTRMS">
+      <h3>Create A New TRMS Form</h3>
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms_actions\create-trms.html">
+          <button id="createbtn">Create TRMS</button>
+        </a>
+    </div>
+
+    <br>
+
+    <div id="updateTRMS">
+      <h3>Update An Existing TRMS Form</h3>
+        <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms_actions\update-trms.html">
+          <button id="updatebtn">Update TRMS</button>
+        </a>
+    </div>
+
+    <br>
+
+    <div id="viewTRMS">
+      <h3>View TRMS</h3>
+        <label for="idInputOne">TRMS ID:</label>
+        <input type="number" id="idInputOne" value="1" min="1">
+        <button onclick="getTRMS()">View TRMS</button>
+        <div>
+          <p id=""></p>
+        </div>
+      <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+        <tr>
+          <td>TRMS ID</td>
+          <td id="doc">-</td>
+        </tr>
+        <tr>
+          <td>Employee ID</td>
+          <td id="employee">-</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td id="status">-</td>
+        </tr>
+        <tr>
+          <td>Documentation</td>
+          <td id="documentation">-</td>
+        </tr>
+        <tr>
+          <td>Event</td>
+          <td id="type">-</td>
+        </tr>
+      </table>
+    </div>
+    
+    <br>
+
+    <div id="deleteTRMS">
+      <h3>Delete TRMS</h3>
+        <label for="idInputTwo">TRMS ID:</label>
+        <input type="number" id="idInputTwo" value="1" min="1">
+        <button onclick="deleteTRMS()">Delete TRMS</button>
+        <div>
+          <p id=""></p>
+        </div>
+    </div>
+
+    <br>
+
+    <div id="viewReference">
+      <h3>View Reference</h3>
+        <label for="idInputOne">Reference ID:</label>
+        <input type="number" id="idInputOne" value="1" min="1">
+        <button onclick="getReference()">View Reference</button>
+        <div>
+          <p id=""></p>
+        </div>
+      <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+        <tr>
+          <td>Reference ID</td>
+          <td id="rId">-</td>
+        </tr>
+        <tr>
+          <td>TRMS ID</td>
+          <td id="trmsId">-</td>
+        </tr>
+        <tr>
+          <td>Grading Scale</td>
+          <td id="gScale">-</td>
+        </tr>
+        <tr>
+          <td>Grade Recieved</td>
+          <td id="gRecieved">-</td>
+        </tr>
+        <tr>
+          <td>Presentation Needed</td>
+          <td id="pNeeded">-</td>
+        </tr>
+        <tr>
+          <td>Presentation Success</td>
+          <td id="pSuccess">-</td>
+        </tr>
+      </table>
+    </div>
+    
+    <br>
+
+    <div id="deleteReference">
+      <h3>Delete Reference</h3>
+        <label for="idInputTwo">Reference ID:</label>
+        <input type="number" id="idInputTwo" value="1" min="1">
+        <button onclick="deleteReference()">Delete Reference</button>
+        <div>
+          <p id=""></p>
+        </div>
+    </div>
+
+    <!--Reimbursement Information Table-->
+    <div id="tableSection">
+      <h2>Reimbursement Coverage for Events</h2>
+        <table id="coverageInfo">
+          <tr>
+            <th>Event Type</th>
+            <th>Reimbursement Available</th>
+          </tr>
+          <tr>
+            <td>University Courses</td>
+            <td>80%</td>
+          </tr>
+          <tr>
+            <td>Seminars</td>
+            <td>60%</td>
+          </tr>
+          <tr>
+            <td>Certification Preparation Classes</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td>Certifications</td>
+            <td>100%</td>
+          </tr>
+          <tr>
+            <td>Technical Training</td>
+            <td>90%</td>
+          </tr>
+          <tr>
+            <td>Others</td>
+            <td>30%</td>
+          </tr>
+        </table>
+    </div>
+    
+  </div>
+
+  <!--Bottom Border (on the window bottom)-->
+  <div id="bottom-border">
+    <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+      <button type="submit">Home</button>
+    </form>
+  </div>
+
+</body>
+<script src="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\JavaScript\nav-bar.js"></script>
+<script>
+  function populateTable1(body) {
+    document.getElementById("doc").innerHTML = body['doc_id']
+    document.getElementById("employee").innerHTML = body['employee_id']
+    document.getElementById("status").innerHTML = body['f_status']
+    document.getElementById("documentation").innerHTML = body['documentation']
+    document.getElementById("type").innerHTML = body['r_type']
+  }
+
+  function populateTable2(body) {
+    document.getElementById("rId").innerHTML = body['ref_id']
+    document.getElementById("trmsId").innerHTML = body['doc_id']
+    document.getElementById("gScale").innerHTML = body['g_scale']
+    document.getElementById("gRecieved").innerHTML = body['g_earned']
+    document.getElementById("pNeeded").innerHTML = body['p_needed']
+    document.getElementById("pSuccess").innerHTML = body['p_success']
+  }
+
+  //retrieve TRMS
+  async function getTRMS() {
+    const id = document.getElementById("idInputOne").value
+    const url = `http://localhost:5000/trms/${id}`
+  
+    const httpResponce = await fetch(url)
+    const body = await httpResponce.json()
+  
+    console.log(body)
+
+    populateTable1(body)
+  }
+
+  //retrieve Reference
+  async function getReference() {
+    const id = document.getElementById("idInputOne").value
+    const url = `http://localhost:5000/reference/${id}`
+  
+    const httpResponce = await fetch(url)
+    const body = await httpResponce.json()
+  
+    console.log(body)
+
+    populateTable2(body)
+  }
+
+  //delete TRMS
+  async function deleteTRMS(){
+    const id = document.getElementById("idInputTwo").value
+    const url =  `http://localhost:5000/trms/${id}`
+
+    const httpResponce = await fetch(url, {
+      method:"DELETE"});
+
+    const body = await httpResponce
+
+    console.log(body);
+      if(body) {
+          alert("TRMS Successfully Deleted!")
+      }
+      else {
+          alert("TRMS Failed to be Deleted.")
+      }
+  }
+
+  //delete Reference
+  async function deleteReference(){
+    const id = document.getElementById("idInputTwo").value
+    const url =  `http://localhost:5000/reference/${id}`
+
+    const httpResponce = await fetch(url, {
+      method:"DELETE"});
+
+    const body = await httpResponce
+
+    console.log(body);
+      if(body) {
+          alert("Reference Successfully Deleted!")
+      }
+      else {
+          alert("Reference Failed to be Deleted.")
+      }
+  }
+</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Register</title>
+
+<!--External CSS Style Sheets-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\login.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+</head>
+<body style="background-color:bisque;">
+
+	<!--Navigation Banner-->
+	<div class="topnav" id="myTopnav">
+		<a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+		<div class="dropdown">
+		  	<button class="dropbtn">Employees
+				<i class="fa fa-caret-down"></i>
+		  	</button>
+		  	<div class="dropdown-content">
+				<a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+				<a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+				<a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+		  	</div>
+		</div>
+		<a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+		<a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+	<!--End of Navagation Banner-->
+
+	<div class="register">
+		<h1>Register</h1>
+		<div class="links">
+			<a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+			<a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\register.html" class="act">Register</a>
+		</div>
+		<form id="register" autocomplete="off">
+            <label for="username">
+				<i class="fas fa-user"></i>
+			</label>
+			<input type="text" name="username" placeholder="Username" id="username" required>
+			<label for="password">
+				<i class="fas fa-lock"></i>
+			</label>
+			<input type="passcode" name="passcode" placeholder="Passcode" id="passcode" required>
+            <input type="number" name="employeeId" placeholder="Employee ID" id="eId" min="1" required>
+			<div class="msg" style="color:white;">Please input every field to Create a Login</div>
+			<form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html" method="get" >
+				<button type="submit" onclick="register()" value="Register">Register</button>
+			</form>
+		</form>
+	</div>
+
+    <!--Bottom Border (on the window bottom)-->
+    <div id="bottom-border">
+        <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+        	<button type="submit">Home</button>
+        </form>
+    </div>
+</body>
+<script src="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\JavaScript\nav-bar.js"></script>
+<script>
+    //Create Login register
+	async function register() {
+		console.log("Registering...")
+
+		const id = document.getElementById("eId").value
+		const usernameValue = document.getElementById(username).value
+		const passcodeValue = document.getElementById(passcode).value
+
+		const data = {
+			employeeId: id,
+			username: usernameValue,
+			passcode: passcodeValue
+		}
+
+		const url = `http://localhost:5000/register`
+		const httpResponce = await fetch(url, {
+			method: "POST",
+			headers: {
+				'Content-Type':'application/json'
+			},
+			body: JSON.stringify(data)
+		});
+
+		const body = await httpResponce.json();
+
+		console.log(body)
+
+			if (body) {
+				alert("Register Successful")
+			}
+			else {
+				alert("Register Failed")
+			}
+	}
+</script>
+</html>

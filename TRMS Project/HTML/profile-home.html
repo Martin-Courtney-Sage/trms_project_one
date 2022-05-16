@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Profile Home</title>
+
+<!--External CSS Style Sheet for the Nav Bar-->
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\nav-bar.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\bottom-border.css">
+<link rel="stylesheet" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\CSS\side-bar.css">
+
+<style>
+  #actionEmployee{
+    text-decoration:underline;
+  }
+  img{
+    height: 100px;
+    width: 100px;
+    border-color:rgb(72, 65, 51);
+    background-color: #417e67;
+    border-style: solid;
+  }
+  #retrieve {
+    border: 1px solid black;
+    padding-left: 2%;
+    text-align:left;
+  }
+  td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+</style>
+
+</head>
+<body style="background-color:bisque;">
+
+  <!--Navigation Banner-->
+  <div class="topnav" id="myTopnav">
+    <a id="home-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" class="active">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn">Employees
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a id="main-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee-profile.html">Main</a>
+        <a id="profile-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile Page</a>
+        <a id="trms-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a>
+      </div>
+    </div>
+    <a id="login-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\login_register\login.html">Login</a>
+    <a id="about-contact-link" href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\about-contact.html">About/Contact</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  <!--End of Navagation Banner-->
+
+  <!--Side Navigation Bar (on right side)-->
+  <div id="mySidenav" class="sidenav">
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\profile-home.html">Profile</a><br>
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\trms-form.html">TRMS Form</a><br>
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee_actions\update-employee.html">Update Information</a><br>
+    <a href="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\employee_actions\delete-employee.html">Delete Account</a><br>
+    <a href="#">Log Out</a>
+  </div>
+  <!--End of Side Navigation Bar-->
+      
+
+  <!--pushes page content to the left of the side bar-->
+  <div id="main">
+
+    <h1 style="text-align: center">Welcome to Your Employee Profile</h1>
+
+    <h3>Profile Name (ID Number)</h3>
+    <img src="C:\Users\Mysti\Desktop\Revature\Pictures\profile_picture.png" alt="profile picture"/>
+
+    <br><br><br>
+
+    <h2 id="actionEmployee">Employee Actions</h2>
+
+    <div id="viewEmployee">
+      <h3>View Employee Information</h3>
+        <label for="idInputOne">Employee ID:</label>
+        <input type="number" id="idInputOne" value="1" min="1">
+        <button onclick="getEmployee()">View Information</button>
+        <div>
+          <p id=""></p>
+        </div>
+      <br>
+      <table id="retrieve" style="border: 1px solid black; border-collapse: collapse;">
+        <tr>
+          <td>Employee ID</td>
+          <td id="eId">-</td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td id="first">-</td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td id="last">-</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td id="email">-</td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td id="position">-</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+      
+    
+  <!--Bottom Border (on the window bottom)-->
+  <div id="bottom-border">
+    <form action="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\HTML\homepage.html" method="get">
+      <button type="submit">Home</button>
+    </form>
+  </div>
+
+</body>
+<script src="C:\Users\Mysti\Desktop\Revature\VisualStudioThings\ClientSideTechnologies\TRMS Project\JavaScript\nav-bar.js"></script>
+<script>
+  function populateTable(body) {
+    document.getElementById("eId").innerHTML = body['employee_id']
+    document.getElementById("first").innerHTML = body['f_name']
+    document.getElementById("last").innerHTML = body['l_name']
+    document.getElementById("email").innerHTML = body['email']
+    document.getElementById("position").innerHTML = body['position']
+  }
+
+  //retrieve Employee
+  async function getEmployee() {
+    const id = document.getElementById("idInputOne").value
+    const url = `http://localhost:5000/employee/${id}`
+  
+    const httpResponce = await fetch(url)
+    const body = await httpResponce.json()
+  
+    console.log(body)
+
+    populateTable(body)
+  }
+</script>
+</html>

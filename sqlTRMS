@@ -1,0 +1,70 @@
+drop table if exists employee_information;
+drop table if exists trms_process;
+drop table if exists reference;
+
+create table employee_information(
+	e_id serial primary key,
+	first_name varchar (50) not null,
+	last_name varchar (50) not null,
+	email varchar (100) not null,
+	job_relation varchar (25)
+);
+
+select * from employee_information;
+
+create table login(
+	id serial primary key,
+	e_id int references employee_information(e_id) not null,
+	username varchar(50) not null,
+	passcode varchar (100) not null
+);
+
+select * from login;
+
+create table trms_process(
+	document_id serial primary key,
+	e_id int references employee_information(e_id) not null,
+	form_status varchar,
+	documentation varchar,
+	request_type varchar
+);
+
+select * from trms_process;
+
+create table reference(
+	reference_id serial primary key,
+	document_id int references trms_process(document_id) not null,
+	grading_scale varchar,
+	grade_received varchar,
+	presentation_needed varchar,
+	presentation_success varchar
+);
+
+select * from reference
+
+
+-- input information sessions (testing values)
+
+insert into employee_information (e_id, first_name, last_name, email, job_relation) values
+	(default, 'Steve', 'Martin', 'martin@email.com', 'Direct Supervisor'),
+	(default, 'Winter', 'Moon', 'moon@email.com', 'Employee'),
+	(default, 'Renolds', 'Stone', 'stone@email.com', 'Department Head'),
+	(default, 'Summer', 'Storm', 'storm@email.com', 'Employee'),
+	(default, 'Alisha', 'Wolf', 'wolf@email.com', 'BenCo');
+	
+insert into login(id, e_id, username, passcode) values
+	(default, 1, 'martin1', '123456'),
+	(default, 2, 'moon1', '123456'),
+	(default, 3, 'stone1', '123456'),
+	(default, 4, 'storm1', '123456'),
+	(default, 5, 'admin1', '123456');
+
+	
+insert into trms_process (document_id, e_id, form_status, documentation, request_type) values
+	(default, 2, 'processing', 'true', 'university class'),
+	(default, 4, 'approved', 'false', 'certification');
+	
+insert into reference (reference_id, document_id, grading_scale, grade_received, presentation_needed, presentation_success) values
+	(default, 1, 'ABCDF', 'A', 'false', 'none'),
+	(default, 2, 'pass/fail', 'fail', 'true', 'yes');
+	
